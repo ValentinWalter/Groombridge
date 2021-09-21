@@ -1,0 +1,99 @@
+.editor {
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+}
+
+.editor_content {
+  height: 100%;
+  padding: 10px 25px;
+  border-radius: 20px;
+  background-color: white;
+  transition: all ease-in-out 0.12s;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 3px var(--blue8);
+  }
+
+  blockquote {
+    border-left: 3px solid var(--gray6);
+    margin-left: 0;
+    padding-left: 20px;
+  }
+
+  code {
+    background: var(--gray2);
+    border-radius: 5px;
+    padding: 0.3rem;
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+      Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  pre code {
+    display: block;
+  }
+
+  hr {
+    border: 1px solid var(--gray3);
+  }
+}
+
+.toolbar {
+  display: flex;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  button {
+    border-radius: 14px;
+    width: 44px;
+    height: 44px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--gray6);
+    }
+
+    &.active {
+      background-color: var(--blue9);
+      color: white;
+    }
+
+    &[aria-haspopup="menu"] {
+      width: 56px;
+    }
+  }
+}
+
+.dropdown {
+  background-color: rgba($color: white, $alpha: 0.32);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 0.5px solid var(--mauve7);
+  padding: 6px;
+  border-radius: 10px;
+  border: 0.5px solid var(--mauve7);
+  box-shadow: 0 4px 8px 0 var(--mauve5);
+  min-width: 150px;
+
+  .item {
+    padding: 8px;
+    border-radius: 6px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--gray6);
+      outline: none;
+    }
+
+    &.active {
+      background-color: var(--blue9);
+      color: white;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+}
