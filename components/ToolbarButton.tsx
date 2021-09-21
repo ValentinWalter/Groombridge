@@ -21,7 +21,10 @@ export default function ToolbarButton({ item, editor }: ToolbarButtonProps) {
           <Icons.ChevronDownIcon />
         </DropdownMenu.Trigger>
 
-        <DropdownMenu.Content className={styles.dropdown}>
+        <DropdownMenu.Content
+          onCloseAutoFocus={(event) => event.preventDefault()}
+          className={styles.dropdown}
+        >
           {item.children?.map((child) => {
             return (
               <DropdownMenu.Item
