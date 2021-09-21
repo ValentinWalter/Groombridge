@@ -1,0 +1,66 @@
+.titlebar {
+  display: flex;
+	align-items: center;
+  justify-content: space-between;
+  margin: 32px 0;
+
+  button {
+    font-size: 18px;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 14px;
+    transition: transform 0.4s ease-out;
+    height: 44px;
+
+    &:hover {
+      transform: scale(1.15);
+      cursor: pointer;
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+
+  .textfield {
+    font-size: 22px;
+    text-align: center;
+    border: none;
+    background: none;
+		width: 100%;
+
+		&:focus {
+			outline: none;
+		}
+  }
+
+  .share {
+    background: #d6409f;
+    box-shadow: 0 4px 6px 0 #fad8ec, inset 4px 4px 16px 0 #ecadd4,
+      inset -4px -4px 16px 0 #cd1d8d;
+  }
+
+  .save {
+    background: #0090ff;
+    box-shadow: 0 4px 6px 0 #cee7fe, inset 4px 4px 16px 0 #96c7f2,
+      inset -4px -4px 16px 0 #006adc;
+  }
+}
+
+.branding {
+  text-align: center;
+		width: 100%;
+
+  h1 {
+    margin: 0;
+    line-height: 1;
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    opacity: 0.5;
+    margin: 0.5em 0 2em 0;
+  }
+}
