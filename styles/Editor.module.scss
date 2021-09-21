@@ -52,23 +52,9 @@
     border-radius: 14px;
     width: 44px;
     height: 44px;
+		color: var(--mauve12);
     transition: transform 0.14s ease-out,
       background-color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
-
-    &:hover {
-      cursor: pointer;
-      background-color: var(--gray6);
-    }
-
-    &:active {
-      color: inherit;
-      transform: scale(0.9);
-    }
-
-    &.active {
-      background-color: var(--blue9);
-      color: white;
-    }
 
     &[aria-haspopup="menu"] {
       width: 64px;
@@ -85,6 +71,23 @@
 
     svg:nth-child(2) {
       color: var(--mauve9);
+    }
+
+    &:not([disabled]) {
+      &:hover {
+        cursor: pointer;
+        background-color: var(--gray6);
+      }
+
+      &:active {
+        color: inherit;
+        transform: scale(0.9);
+      }
+
+      &.active {
+        background-color: var(--blue9);
+        color: white;
+      }
     }
   }
 }

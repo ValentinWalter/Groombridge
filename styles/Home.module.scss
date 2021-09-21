@@ -1,12 +1,10 @@
 .container {
-	padding: 0 15px;
+  padding: 0 15px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--mauve2);
-  height: 100vh;
 }
 
 .main {
