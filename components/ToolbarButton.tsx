@@ -10,13 +10,13 @@ type ToolbarButtonProps = {
 }
 
 export default function ToolbarButton({ item, editor }: ToolbarButtonProps) {
-  const buttonClass = `card ${item.isActive() ? styles.active : ""}`
+  const buttonClass = `card ${item.isActive() && editor.isFocused ? styles.active : ""}`
 
   if (item.children != null) {
     // Dropdown menu
     return (
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger className={buttonClass} disabled={!editor.isFocused}>
+        <DropdownMenu.Trigger className={buttonClass}>
           {item.label}
           <Icons.ChevronDownIcon />
         </DropdownMenu.Trigger>
@@ -45,7 +45,6 @@ export default function ToolbarButton({ item, editor }: ToolbarButtonProps) {
       <button
         onClick={() => item.action(editor.chain().focus()).run()}
         className={buttonClass}
-        disabled={!editor.isFocused}
       >
         {item.label}
       </button>

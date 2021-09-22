@@ -52,17 +52,9 @@
     border-radius: 14px;
     width: 44px;
     height: 44px;
-		color: var(--mauve12);
+    color: var(--mauve12);
     transition: transform 0.14s ease-out,
       background-color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
-
-    &[aria-haspopup="menu"] {
-      width: 64px;
-
-      &:active {
-        transform: none;
-      }
-    }
 
     svg:first-child {
       width: 24px;
@@ -76,7 +68,7 @@
     &:not([disabled]) {
       &:hover {
         cursor: pointer;
-        background-color: var(--gray6);
+        background-color: var(--gray3);
       }
 
       &:active {
@@ -87,6 +79,18 @@
       &.active {
         background-color: var(--blue9);
         color: white;
+
+        svg:nth-child(2) {
+          color: rgba(white, 0.75);
+        }
+      }
+    }
+
+    &[aria-haspopup="menu"] {
+      width: 64px;
+
+      &:active {
+        transform: none;
       }
     }
   }
@@ -112,6 +116,7 @@
   .item {
     padding: 8px;
     border-radius: 8px;
+    transition: background-color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
 
     &:hover {
       cursor: pointer;

@@ -20,7 +20,7 @@ export default function Toolbar({ editor }: ToolbarProps) {
   const toggle = (
     commands: ChainedCommands,
     item: string,
-    type: "mark" | "node",
+    type: "mark" | "node" = "mark",
     attributes?: Record<string, unknown>
   ) => {
     switch (type) {
@@ -44,7 +44,12 @@ export default function Toolbar({ editor }: ToolbarProps) {
     {
       label: <Icons.HeadingIcon key="heading" />,
       action: (commands) => commands,
-      isActive: () => false,
+      isActive: () =>
+        [1, 2, 3, 4, 5, 6]
+          .map((level) => {
+            return editor.isActive("heading", { level: level })
+          })
+          .includes(true),
       children: [1, 2, 3, 4, 5, 6].map((level) => {
         return {
           label: <span key={level}>{level == 1 ? "Title" : `Heading ${level}`}</span>,
@@ -56,7 +61,7 @@ export default function Toolbar({ editor }: ToolbarProps) {
     {
       label: <Icons.ListBulletIcon />,
       action: (commands) => commands,
-      isActive: () => false,
+      isActive: () => editor.isActive("bulletList") || editor.isActive("orderedList"),
       children: [
         {
           label: <span key="bullet">Bullet List</span>,
@@ -77,22 +82,22 @@ export default function Toolbar({ editor }: ToolbarProps) {
     },
     {
       label: <Icons.FontBoldIcon key="bold" />,
-      action: (commands) => commands.toggleBold(),
+      action: (commands) => toggle(commands, "bold"),
       isActive: () => editor.isActive("bold"),
     },
     {
       label: <Icons.FontItalicIcon key="italic" />,
-      action: (commands) => commands.toggleItalic(),
+      action: (commands) => toggle(commands, "italic"),
       isActive: () => editor.isActive("italic"),
     },
     {
       label: <Icons.StrikethroughIcon key="strike" />,
-      action: (commands) => commands.toggleStrike(),
+      action: (commands) => toggle(commands, "strike"),
       isActive: () => editor.isActive("strike"),
     },
     {
       label: <Icons.CodeIcon key="code" />,
-      action: (commands) => commands.toggleCode(),
+      action: (commands) => toggle(commands, "code"),
       isActive: () => editor.isActive("code"),
     },
     {
