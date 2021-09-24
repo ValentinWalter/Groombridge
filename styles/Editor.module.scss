@@ -1,3 +1,5 @@
+@import "mixins.scss";
+
 .editor {
   height: 100%;
   width: 100%;
@@ -53,8 +55,8 @@
     width: 44px;
     height: 44px;
     color: var(--mauve12);
-    transition: transform 0.14s ease-out,
-      background-color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+
+    @include pillowButton;
 
     svg:first-child {
       width: 24px;
@@ -66,16 +68,6 @@
     }
 
     &:not([disabled]) {
-      &:hover {
-        cursor: pointer;
-        background-color: var(--gray3);
-      }
-
-      &:active {
-        color: inherit;
-        transform: scale(0.9);
-      }
-
       &.active {
         background-color: var(--blue9);
         color: white;
@@ -103,30 +95,42 @@
   border: 0.5px solid var(--mauve7);
   box-shadow: 0 16px 22px 0 rgba($color: black, $alpha: 0.1);
   min-width: 150px;
+  transform-origin: top;
 
   @media (prefers-reduced-motion: no-preference) {
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    willchange: transform, opacity;
     &[data-state="open"] {
       animation-name: slidein;
+    }
+    &[data-state="closed"] {
+      // animation-name: slideout;
+    opacity: 0.8;
+			transform: scale(0.8);
     }
   }
 
   .item {
     padding: 8px;
     border-radius: 8px;
-    transition: background-color 0.14s cubic-bezier(0.16, 1, 0.3, 1);
+
+    @include pillowButton;
 
     &:hover {
-      cursor: pointer;
-      background-color: rgba($color: black, $alpha: 0.05);
       outline: none;
     }
 
     &.active {
       background-color: var(--blue9);
       color: white;
+
+      &:hover {
+        background-color: var(--blue9);
+      }
+
+      &:active {
+        color: white;
+      }
     }
 
     &:not(:last-child) {
@@ -137,12 +141,24 @@
 
 @keyframes slidein {
   from {
-    opacity: 0.8;
-    transform: translateX(2%) scale(0.8);
+    opacity: 0;
+    transform: scale(0.8);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes slideout {
+  from {
+    opacity: 1;
+    transform: translateY(-2%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10%) scale(0.8);
   }
 }

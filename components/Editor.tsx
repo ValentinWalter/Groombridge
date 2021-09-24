@@ -1,9 +1,14 @@
 import { useEditor, EditorContent } from "@tiptap/react"
+import type { Editor } from "@tiptap/core"
 import StarterKit from "@tiptap/starter-kit"
 import Toolbar from "components/Toolbar"
 import styles from "styles/Editor.module.scss"
 
-export default function EditorView() {
+interface EditorProps {
+  onUpdate: (props: { editor: Editor }) => void
+}
+
+export default function EditorView({ onUpdate }: EditorProps) {
   const editor = useEditor({
     extensions: [StarterKit],
     content: `
@@ -35,6 +40,8 @@ export default function EditorView() {
         </blockquote>
 				`,
     autofocus: true,
+    onCreate: onUpdate,
+    onUpdate: onUpdate,
     editorProps: {
       attributes: {
         class: `card ${styles.editor_content}`,

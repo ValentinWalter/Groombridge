@@ -1,6 +1,6 @@
 .titlebar {
   display: flex;
-	align-items: center;
+  align-items: center;
   justify-content: space-between;
   margin: 32px 0;
 
@@ -13,13 +13,29 @@
     transition: transform 0.4s ease-out;
     height: 44px;
 
-    &:hover {
-      transform: scale(1.15);
-      cursor: pointer;
+    &:not([disabled]) {
+      &:hover {
+        transform: scale(1.15);
+        cursor: pointer;
+      }
+
+      &:active {
+        transform: scale(1);
+      }
     }
 
-    &:active {
-      transform: scale(1);
+    &:not([disabled]) {
+      &.share {
+        background: #d6409f;
+        box-shadow: 0 4px 6px 0 #fad8ec, inset 4px 4px 16px 0 #ecadd4,
+          inset -4px -4px 16px 0 #cd1d8d;
+      }
+
+      &.save {
+        background: #0090ff;
+        box-shadow: 0 4px 6px 0 #cee7fe, inset 4px 4px 16px 0 #96c7f2,
+          inset -4px -4px 16px 0 #006adc;
+      }
     }
   }
 
@@ -28,29 +44,17 @@
     text-align: center;
     border: none;
     background: none;
-		width: 100%;
+    width: 100%;
 
-		&:focus {
-			outline: none;
-		}
-  }
-
-  .share {
-    background: #d6409f;
-    box-shadow: 0 4px 6px 0 #fad8ec, inset 4px 4px 16px 0 #ecadd4,
-      inset -4px -4px 16px 0 #cd1d8d;
-  }
-
-  .save {
-    background: #0090ff;
-    box-shadow: 0 4px 6px 0 #cee7fe, inset 4px 4px 16px 0 #96c7f2,
-      inset -4px -4px 16px 0 #006adc;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
 .branding {
   text-align: center;
-		width: 100%;
+  width: 100%;
 
   h1 {
     margin: 0;

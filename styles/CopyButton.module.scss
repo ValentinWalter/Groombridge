@@ -1,6 +1,7 @@
 @import "mixins.scss";
 
 .copy {
+  position: relative;
   display: flex;
   flex-flow: row;
   background-color: var(--blue3);
@@ -12,6 +13,7 @@
   font-size: 1.2em;
   border-radius: 14px;
   justify-content: space-around;
+	overflow: hidden;
 
   @include pillowButton;
 
@@ -21,8 +23,9 @@
     font-weight: normal;
 
     svg {
-      width: 1.2em;
-      height: 1.2em;
+      width: 1em;
+      height: 1em;
+      transform: scale(1.2);
     }
   }
 
@@ -30,6 +33,20 @@
     &:hover {
       background-color: var(--blue4);
       border: 2px dashed var(--blue6);
+    }
+  }
+
+  &[data-copied="true"] {
+    .icon {
+			display: flex;
+      position: absolute;
+      inset: 0;
+      background-color: var(--blue3);
+      color: var(--blue9);
+
+      span {
+        margin: auto;
+      }
     }
   }
 }

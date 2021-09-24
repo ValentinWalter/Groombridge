@@ -1,0 +1,15 @@
+@mixin pillowButton {
+  transition: transform 0.14s ease-out,
+    background-color 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:not([disabled]) {
+    &:hover {
+      cursor: pointer;
+      background-color: var(--gray4);
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}

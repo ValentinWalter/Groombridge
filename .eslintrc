@@ -31,7 +31,6 @@
         "jsx-a11y/anchor-is-valid": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/no-unused-vars": ["error"],
         "prettier/prettier": ["warn", {}, { "usePrettierrc": true }]
       }
     }
