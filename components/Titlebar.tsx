@@ -6,14 +6,14 @@ interface TitlebarProps {
   onSave: (title: string) => void
 }
 
-export default function Titlebar({ onShare, onSave }: TitlebarProps) {
+export default function Titlebar({ onSave }: TitlebarProps) {
   const [title, setTitle] = useState("")
 
   return (
     <div className={styles.titlebar}>
-      <button onClick={onShare} className={styles.share}>
+      {/* <button onClick={onShare} className={styles.share}>
         Share
-      </button>
+      </button> */}
       <div className={styles.branding}>
         {/* <h1>Groombridge</h1>
         <p>Text editor.</p> */}
