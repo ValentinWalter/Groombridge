@@ -1,4 +1,5 @@
 import Link from "next/link"
+import * as Icons from "@radix-ui/react-icons"
 import styles from "styles/Titlebar.module.scss"
 import useDocument from "model/useDocument"
 
@@ -19,15 +20,18 @@ export default function Titlebar({ title, onTitleChange, onSave }: TitlebarProps
         Share
       </button> */}
 
-        <input
-          type="text"
-          value={title}
-          onChange={(event) => {
-            if (onTitleChange) onTitleChange(event.target.value)
-          }}
-          placeholder="Document title..."
-          className={styles.title}
-        />
+        <span className={styles.title}>
+          <Icons.Pencil1Icon className={styles.lockIcon} />
+          <input
+            type="text"
+            value={title}
+            onChange={(event) => {
+              if (onTitleChange) onTitleChange(event.target.value)
+            }}
+            placeholder="Document title..."
+            style={{ transform: "translateY(-5px)" }}
+          />
+        </span>
 
         <button onClick={onSave} disabled={title == ""} className={styles.save}>
           Save
@@ -37,10 +41,20 @@ export default function Titlebar({ title, onTitleChange, onSave }: TitlebarProps
   } else {
     return (
       <nav className={styles.titlebar}>
-        <span className={styles.title}>{document?.title}</span>
+        <span className={styles.title}>
+          <Icons.LockClosedIcon
+            className={styles.lockIcon}
+            style={{ transform: "translateY(2px)" }}
+          />
+          {document?.title}
+        </span>
 
-        <Link href={`/edit/${status?.cid}`} passHref>
+        <Link href={`/edit?cid=${status?.cid}`} passHref>
           <button className={styles.save}>Edit</button>
+        </Link>
+
+        <Link href={`/`} passHref>
+          <button className={styles.share}>New</button>
         </Link>
       </nav>
     )

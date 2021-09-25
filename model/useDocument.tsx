@@ -37,7 +37,7 @@ const fetcher: (cid: CIDString) => Promise<Data> = async (cid) => {
 
 export default function useDocument() {
   const router = useRouter()
-  const cid = router.asPath.split("/").pop() ?? ""
+  const cid = router.query.cid?.toString() ?? ""
   const { data, error } = useSWR(cid, fetcher)
 
   return {

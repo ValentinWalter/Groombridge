@@ -3,9 +3,11 @@
   align-items: center;
   justify-content: space-between;
   margin: 32px 0;
+	gap: 10px;
 
   button {
     font-size: 18px;
+    font-weight: 500;
     border: none;
     color: white;
     padding: 10px 16px;
@@ -42,9 +44,23 @@
   .title {
     font-size: 22px;
     text-align: left;
-    border: none;
-    background: none;
     width: 100%;
+    display: flex;
+
+    input {
+      font-size: 22px;
+      border: none;
+      background: none;
+      outline: none;
+      flex-grow: 1;
+    }
+
+    .lockIcon {
+      width: 1em;
+      height: 1em;
+      margin-right: 5px;
+      color: var(--mauve11);
+    }
 
     &:focus {
       outline: none;

@@ -43,6 +43,11 @@
 
     a {
       border-bottom: 2px solid var(--mauve5);
+      transition: border 0.14s ease-out;
+
+      &:hover {
+        border-bottom: 2px solid var(--blue9);
+      }
     }
   }
 

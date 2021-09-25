@@ -1,6 +1,7 @@
 import useDocument from "model/useDocument"
 import { useRouter } from "next/router"
 import React, { Fragment } from "react"
+import Link from "next/link"
 import styles from "styles/Footer.module.scss"
 
 export default function Footer() {
@@ -63,8 +64,13 @@ export default function Footer() {
         <h3>About</h3>
 
         <Item>
-          <span>Project</span>
           <span>Groombridge</span>
+          <span></span>
+          <Link
+            href={`/view?cid=bafybeifsm7psbgy2w7qabt77v4pwxl3i5pkuxly5zbwixed6gb5nitb7mu`}
+          >
+            <a>Example document &rarr;</a>
+          </Link>
         </Item>
 
         <Item>

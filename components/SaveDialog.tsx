@@ -133,7 +133,7 @@ export default function SaveDialog({
         <div className={styles.buttons}>
           <Dialog.Close className={styles.cancel}>Cancel</Dialog.Close>
           {props.cid != undefined ? (
-            <Link href={`/${props.cid}`} passHref>
+            <Link href={`/view?cid=${props.cid}`} passHref>
               <button disabled={!props.uploadComplete} className={styles.save}>
                 View
               </button>
