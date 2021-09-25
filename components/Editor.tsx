@@ -5,13 +5,17 @@ import Toolbar from "components/Toolbar"
 import styles from "styles/Editor.module.scss"
 
 interface EditorProps {
-  onUpdate: (props: { editor: Editor }) => void
+  editable: boolean
+  content?: string
+  onUpdate?: (props: { editor: Editor }) => void
 }
 
-export default function EditorView({ onUpdate }: EditorProps) {
+export default function EditorView(props: EditorProps) {
   const editor = useEditor({
     extensions: [StarterKit],
-    content: `
+    content:
+      props.content ??
+      `
 				<h2>
           Hi there,
         </h2>
@@ -40,8 +44,9 @@ export default function EditorView({ onUpdate }: EditorProps) {
         </blockquote>
 				`,
     autofocus: true,
-    onCreate: onUpdate,
-    onUpdate: onUpdate,
+    onCreate: props.onUpdate ?? (() => {}),
+    onUpdate: props.onUpdate ?? (() => {}),
+    editable: props.editable,
     editorProps: {
       attributes: {
         class: `card ${styles.editor_content}`,
@@ -51,7 +56,7 @@ export default function EditorView({ onUpdate }: EditorProps) {
 
   return (
     <div className={styles.editor}>
-      <Toolbar editor={editor} />
+      {props.editable && <Toolbar editor={editor} />}
       <EditorContent editor={editor} />
     </div>
   )

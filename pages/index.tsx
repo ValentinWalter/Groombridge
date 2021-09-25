@@ -1,56 +1,42 @@
 import type { NextPage } from "next"
-import Head from "next/head"
 import styles from "styles/Home.module.scss"
 import Editor from "components/Editor"
 import Titlebar from "components/Titlebar"
 import { useState } from "react"
 import SaveDialog from "components/SaveDialog"
+import Layout from "components/Layout"
+import { Document } from "model/useDocument"
 
-export interface Document {
-  title: string
-  content: string
-}
-
-const Home: NextPage = () => {
-  const [content, setContent] = useState("")
-  const [documentTitle, setDocumentTitle] = useState("")
+const Home: NextPage<Partial<Document>> = (document) => {
+  const [content, setContent] = useState(document?.content ?? "")
+  const [title, setTitle] = useState(document?.title ?? "")
   const [showSaveDialog, setShowSaveDialog] = useState(false)
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Groombridge</title>
-        <meta
-          name="description"
-          content="Lightweight shareable text editor in the browser."
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <nav>
-        <Titlebar
-          onSave={(title) => {
-            setDocumentTitle(title)
-            setShowSaveDialog(!showSaveDialog)
-          }}
-        />
-      </nav>
+    <Layout>
+      <Titlebar
+        title={title}
+        onTitleChange={setTitle}
+        onSave={() => {
+          setShowSaveDialog(!showSaveDialog)
+        }}
+      />
 
       <main className={styles.main}>
-        <Editor onUpdate={({ editor }) => setContent(editor.getHTML())} />
+        <Editor
+          editable={true}
+          content={document?.content}
+          onUpdate={({ editor }) => setContent(editor.getHTML())}
+        />
       </main>
 
-      <footer className={styles.footer}>
-        <a href="https://valwal.com">By valwal.com</a>
-      </footer>
-
       <SaveDialog
-        title={documentTitle}
+        title={title}
         content={content}
         open={showSaveDialog}
         onOpenChange={setShowSaveDialog}
       />
-    </div>
+    </Layout>
   )
 }
 

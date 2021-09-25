@@ -1,0 +1,65 @@
+.footer {
+  width: 100%;
+  max-width: 500px;
+  margin-top: auto;
+  padding-top: 32px;
+
+  h3 {
+    opacity: 0.75;
+    font-size: 1.2em;
+    margin: 0 0 4px 0;
+  }
+
+  section + section {
+    margin-top: 44px;
+  }
+
+  .item {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin: 16px 0;
+    padding-top: 16px;
+    word-wrap: break-word;
+
+    & + .item,
+    &:only-child {
+      border-top: 1px solid var(--gray4);
+    }
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    & > :first-child {
+      max-width: 40%;
+      color: var(--mauve9);
+    }
+
+    & > :last-child {
+      max-width: calc(60% - 10px);
+      text-align: right;
+    }
+
+    a {
+      border-bottom: 2px solid var(--mauve5);
+    }
+  }
+
+  .branding {
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+
+    h1 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 0.5em;
+      color: var(--mauve9);
+    }
+  }
+}

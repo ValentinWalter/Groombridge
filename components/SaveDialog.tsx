@@ -2,23 +2,18 @@ import styles from "styles/SaveDialog.module.scss"
 import { useState, useEffect } from "react"
 import { CIDString } from "web3.storage"
 import * as Dialog from "@radix-ui/react-dialog"
-import { Web3Storage } from "web3.storage"
-import { Document } from "pages/index"
+import storage from "model/storage"
+import { Document } from "model/useDocument"
 import PropagateLoader from "react-spinners/PropagateLoader"
 import CopyButton from "components/CopyButton"
 import Link from "next/link"
-
-const storage = new Web3Storage({
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDhCYTg2OTg2RDcyNDM3MDJiOGNlNUE2RmRlMDgzOEYzODJBNTYwM2QiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2MzIzMDkyODYwNTUsIm5hbWUiOiJHcm9vbWJyaWRnZSJ9.V__oHO_nj3W84mGG1S-OYOtlE_NBTtHfyXhRkawJpww",
-})
 
 type Props = Document & {
   cid?: CIDString
   uploadComplete: boolean
 }
 
-export default function Titlebar({
+export default function SaveDialog({
   open,
   onOpenChange,
   ...document
@@ -51,7 +46,6 @@ export default function Titlebar({
     const file = new File([props.content], props.title, { type: "text/html" })
     const cid = await storage.put([file], {
       name: props.title,
-      wrapWithDirectory: false,
       onRootCidReady: (cid) => {
         setProps({
           ...document,
@@ -67,24 +61,6 @@ export default function Titlebar({
       cid: cid,
       uploadComplete: true,
     })
-
-    // setProps({
-    //   ...document,
-    //   cid: "bafkreiawvbfbrcipuqd3kelxzevdotue4ewzeyg3oa2np7yxpvu3bvs3ja",
-    //   uploadComplete: false,
-    // })
-
-    // setTimeout(
-    //   () =>
-    //     setProps({
-    //       ...document,
-    //       cid: "bafkreiawvbfbrcipuqd3kelxzevdotue4ewzeyg3oa2np7yxpvu3bvs3ja",
-    //       uploadComplete: true,
-    //     }),
-    //   5000
-    // )
-
-    // setTimeout(() => handleSave(), 10000)
   }
 
   const Body = () => {
@@ -119,8 +95,8 @@ export default function Titlebar({
                 Documents are not encrypted and accessible to anyone with the CID (url).
               </li>
               <li>
-                Documents are stored in HTML and pinned to two geographically distributed
-                IPFS nodes. Additionally, a Filecoin deal of 18 months is brokered.{" "}
+                Documents are stored in HTML and pinned to 3 geographically distributed
+                IPFS nodes. Additionally, two Filecoin deals of 18 months are brokered.{" "}
                 <a href="https://web3.storage/about/#terms-of-service">
                   Refer to the Web3.Storage TOS.
                 </a>

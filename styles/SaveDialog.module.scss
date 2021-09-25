@@ -26,11 +26,11 @@
   flex-flow: column;
   justify-content: space-between;
 
-  background-color: var(--mauve1);
+  background-color: white;
   padding: 10px;
   border-radius: 20px;
   border: 0.5px solid var(--mauve8);
-  box-shadow: 0 16px 24px 0 rgba($color: black, $alpha: 0.1);
+  box-shadow: 0 44px 64px 0 rgba($color: black, $alpha: 0.3);
 
   &:focus {
     outline: none;
