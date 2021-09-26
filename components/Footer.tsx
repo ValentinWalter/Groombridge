@@ -67,7 +67,7 @@ export default function Footer() {
           <span>Groombridge</span>
           <span></span>
           <Link
-            href={`/view?cid=bafybeifsm7psbgy2w7qabt77v4pwxl3i5pkuxly5zbwixed6gb5nitb7mu`}
+            href={`/view?cid=bafybeibrbqdz5dlfmczdumov4auwoafbfqgzeuymhq2ttf5ddalfcmn3su`}
           >
             <a>Example document &rarr;</a>
           </Link>

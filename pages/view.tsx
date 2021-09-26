@@ -1,7 +1,6 @@
 import type { NextPage } from "next"
 import styles from "styles/Home.module.scss"
 import Editor from "components/Editor"
-import Titlebar from "components/Titlebar"
 import useDocument from "model/useDocument"
 import Layout from "components/Layout"
 import PropagateLoader from "react-spinners/PropagateLoader"
@@ -26,8 +25,6 @@ const Document: NextPage = () => {
 
   return (
     <Layout>
-      <Titlebar />
-
       <main className={styles.main}>
         <Editor editable={false} content={document?.content} />
       </main>

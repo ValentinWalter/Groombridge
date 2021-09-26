@@ -3,7 +3,7 @@ import * as Icons from "@radix-ui/react-icons"
 import styles from "styles/Titlebar.module.scss"
 import useDocument from "model/useDocument"
 
-interface TitlebarProps {
+export interface TitlebarProps {
   title?: string
   onTitleChange?: (title: string) => void
   onShare?: () => void
