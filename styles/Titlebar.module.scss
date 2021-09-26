@@ -29,13 +29,13 @@
     &:not([disabled]) {
       &.share {
         background: #d6409f;
-        box-shadow: 0 4px 6px 0 #fad8ec, inset 4px 4px 16px 0 #ecadd4,
+        box-shadow: 0 4px 8px 0 #fad8ec, inset 4px 4px 16px 0 #ecadd4,
           inset -4px -4px 16px 0 #cd1d8d;
       }
 
       &.save {
         background: #0090ff;
-        box-shadow: 0 4px 6px 0 #cee7fe, inset 4px 4px 16px 0 #96c7f2,
+        box-shadow: 0 4px 8px 0 #cee7fe, inset 4px 4px 16px 0 #96c7f2,
           inset -4px -4px 16px 0 #006adc;
       }
     }
@@ -49,6 +49,7 @@
 
     input {
       font-size: 22px;
+			width: 100%;
       border: none;
       background: none;
       outline: none;

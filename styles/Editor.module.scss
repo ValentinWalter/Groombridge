@@ -19,21 +19,26 @@
   }
 
   blockquote {
-    border-left: 3px solid var(--gray6);
+    border-left: 3px solid var(--blue9);
     margin-left: 0;
     padding-left: 20px;
   }
 
   code {
     background: var(--gray2);
+		box-shadow: 0 0 0 0.5px var(--mauve4);
     border-radius: 5px;
-    padding: 0.3rem;
+    padding: 0.1em 0.2em;
+		font-size: 0.9em;
+		color: var(--blue11);
     font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
       Bitstream Vera Sans Mono, Courier New, monospace;
   }
 
   pre code {
     display: block;
+		font-size: 1em;
+		padding: 0.5em;
   }
 
   hr {
@@ -46,6 +51,7 @@
   margin-bottom: 10px;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 5px;
 
   button {
     display: flex;
@@ -105,8 +111,8 @@
     }
     &[data-state="closed"] {
       // animation-name: slideout;
-    opacity: 0.8;
-			transform: scale(0.8);
+      opacity: 0.8;
+      transform: scale(0.8);
     }
   }
 
