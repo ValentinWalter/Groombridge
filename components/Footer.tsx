@@ -82,6 +82,19 @@ export default function Footer() {
         </Item>
 
         <Item>
+          <span>Built with</span>
+          <span>
+            <a href="https://tiptap.dev">tiptap</a>
+            <span>, </span>
+            <a href="https://web3.storage">Web3.Storage</a>
+            <span>, </span>
+            <a href="https://www.radix-ui.com">Radix</a>
+            <span>, </span>
+            <a href="https://nextjs.org">Next.js</a>
+          </span>
+        </Item>
+
+        <Item>
           <a href="https://valwal.com">By valwal.com</a>
         </Item>
       </section>
