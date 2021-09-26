@@ -65,7 +65,6 @@ export default function Footer() {
 
         <Item>
           <span>Groombridge</span>
-          <span></span>
           <Link
             href={`/view?cid=bafybeibrbqdz5dlfmczdumov4auwoafbfqgzeuymhq2ttf5ddalfcmn3su`}
           >
@@ -92,6 +91,11 @@ export default function Footer() {
             <span>, </span>
             <a href="https://nextjs.org">Next.js</a>
           </span>
+        </Item>
+
+        <Item>
+          <span>Open-source</span>
+          <a href="https://github.com/ValentinWalter/Groombridge">on GitHub</a>
         </Item>
 
         <Item>
