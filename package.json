@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.7",
@@ -26,6 +27,7 @@
     "web3.storage": "^3.3.2"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^11.1.2",
     "@next/eslint-plugin-next": "^11.1.2",
     "@types/react": "17.0.21",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
