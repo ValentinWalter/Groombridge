@@ -1,5 +1,5 @@
 import styles from "styles/SaveDialog.module.scss"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { CIDString } from "web3.storage"
 import * as Dialog from "@radix-ui/react-dialog"
 import storage from "model/storage"
@@ -25,7 +25,9 @@ export default function SaveDialog({
   })
   const [userUnderstands, setUserUnderstands] = useState(false)
 
-  useEffect(() => {
+  const _onOpenChange = (open: boolean) => {
+    onOpenChange(open)
+
     if (open) {
       setProps({
         ...props,
@@ -40,7 +42,7 @@ export default function SaveDialog({
       })
       setUserUnderstands(false)
     }
-  }, [open])
+  }
 
   const handleSave = async () => {
     const file = new File([props.content], props.title, { type: "text/html" })
@@ -123,7 +125,7 @@ export default function SaveDialog({
   }
 
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={_onOpenChange}>
       <Dialog.Overlay className={styles.overlay} />
       <Dialog.Content className={styles.dialog}>
         <Dialog.Title>{`"${props.title}"`}</Dialog.Title>

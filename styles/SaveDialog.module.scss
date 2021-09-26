@@ -6,7 +6,7 @@
   background-color: rgba($color: gray, $alpha: 0.4);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  animation: showOverlay 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: showOverlay 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dialog {
@@ -42,9 +42,9 @@
     &[data-state="open"] {
       animation-name: slidein;
     }
-    // &[data-state="closed"] {
-    //   animation-name: slideout;
-    // }
+    &[data-state="closed"] {
+      animation-name: slideout;
+    }
   }
 
   h2 {

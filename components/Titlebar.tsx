@@ -21,7 +21,7 @@ export default function Titlebar({ title, onTitleChange, onSave }: TitlebarProps
       </button> */}
 
         <span className={styles.title}>
-          <Icons.Pencil1Icon className={styles.lockIcon} />
+          <Icons.Pencil1Icon className={styles.icon} />
           <input
             type="text"
             value={title}
@@ -43,7 +43,7 @@ export default function Titlebar({ title, onTitleChange, onSave }: TitlebarProps
       <nav className={styles.titlebar}>
         <span className={styles.title}>
           <Icons.LockClosedIcon
-            className={styles.lockIcon}
+            className={styles.icon}
             style={{ transform: "translateY(2px)" }}
           />
           {document?.title}

@@ -2,7 +2,7 @@ import type { NextPage } from "next"
 import useDocument from "model/useDocument"
 import Home from "pages"
 import Layout from "components/Layout"
-import { PropagateLoader } from "react-spinners"
+import PropagateLoader from "react-spinners/PropagateLoader"
 
 const Edit: NextPage = () => {
   const { document, isLoading, isError } = useDocument()
