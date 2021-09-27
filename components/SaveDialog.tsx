@@ -8,84 +8,57 @@ import PropagateLoader from "react-spinners/PropagateLoader"
 import CopyButton from "components/CopyButton"
 import Link from "next/link"
 
-type Props = Document & {
-  cid?: CIDString
-  uploadComplete: boolean
+interface Props {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  document: Document
 }
 
-export default function SaveDialog({
-  open,
-  onOpenChange,
-  ...document
-}: Document & { open: boolean; onOpenChange: (open: boolean) => void }) {
-  const [props, setProps] = useState<Props>({
-    ...document,
-    cid: undefined,
-    uploadComplete: false,
-  })
+export default function SaveDialog(props: Props) {
+  const [cid, setCID] = useState<CIDString | undefined>()
+  const [uploadComplete, setUploadComplete] = useState(false)
   const [userUnderstands, setUserUnderstands] = useState(false)
 
   const _onOpenChange = (open: boolean) => {
-    onOpenChange(open)
-
-    if (open) {
-      setProps({
-        ...props,
-        ...document,
-      })
-    } else {
+    if (!open) {
       // Reset state when closed
-      setProps({
-        ...document,
-        cid: undefined,
-        uploadComplete: false,
-      })
+      setCID(undefined)
+      setUploadComplete(false)
       setUserUnderstands(false)
     }
+    props.onOpenChange(open)
   }
 
   const handleSave = async () => {
-    const file = new File([props.content], props.title, { type: "text/html" })
+    const file = new File([props.document.content], props.document.title, {
+      type: "text/html",
+    })
     const cid = await storage.put([file], {
-      name: props.title,
-      onRootCidReady: (cid) => {
-        setProps({
-          ...document,
-          cid: cid,
-          uploadComplete: false,
-        })
-      },
+      name: props.document.title,
+      onRootCidReady: setCID,
     })
-    console.log(cid)
 
-    setProps({
-      ...document,
-      cid: cid,
-      uploadComplete: true,
-    })
+    console.log(cid)
+    setCID(cid)
+    setUploadComplete(true)
   }
 
   const Body = () => {
-    if (props.cid != undefined) {
+    if (cid != undefined) {
       return (
         <div className={styles.result}>
-          <div
-            className={styles.statusMessage}
-            data-uploadcomplete={props.uploadComplete}
-          >
-            <PropagateLoader loading={!props.uploadComplete} color={"var(--mauve11)"} />
+          <div className={styles.statusMessage} data-uploadcomplete={uploadComplete}>
+            <PropagateLoader loading={!uploadComplete} color={"var(--mauve11)"} />
             <span>
-              {props.uploadComplete
-                ? "Success!"
-                : "Uploading document to IPFS and Filecoin…"}
+              {uploadComplete ? "Success!" : "Uploading document to IPFS and Filecoin…"}
             </span>
           </div>
           <p>
             This document is being saved to IPFS and Filecoin. Documents are regularly
             purged. Copy the CID below to pin the file to your node.
           </p>
-          <CopyButton text={props.cid}>Copy CID ({props.cid.slice(0, 8)}...)</CopyButton>
-          <span className={styles.entireCID}>{props.cid}</span>
+          <CopyButton text={cid}>Copy CID ({cid?.slice(0, 8)}...)</CopyButton>
+          <span className={styles.entireCID}>{cid}</span>
         </div>
       )
     } else {
@@ -125,25 +98,28 @@ export default function SaveDialog({
   }
 
   return (
-    <Dialog.Root open={open} onOpenChange={_onOpenChange}>
+    <Dialog.Root open={props.open} onOpenChange={_onOpenChange}>
       <Dialog.Overlay className={styles.overlay} />
       <Dialog.Content className={styles.dialog}>
-        <Dialog.Title>{`"${props.title}"`}</Dialog.Title>
+        <Dialog.Title>{`"${props.document.title}"`}</Dialog.Title>
+        <p className={styles.autosaveinfo}>
+          Documents are auto-saved every 3 seconds to your browser&apos;s local storage.
+        </p>
 
         <Body />
 
         <div className={styles.buttons}>
           <Dialog.Close className={styles.cancel}>Cancel</Dialog.Close>
-          {props.cid != undefined ? (
-            <Link href={`/view?cid=${props.cid}`} passHref>
-              <button disabled={!props.uploadComplete} className={styles.save}>
+          {cid != undefined ? (
+            <Link href={`/view?cid=${cid}`} passHref>
+              <button disabled={!uploadComplete} className={styles.save}>
                 View
               </button>
             </Link>
           ) : (
             <button
               onClick={handleSave}
-              disabled={!userUnderstands || props.cid != null}
+              disabled={!userUnderstands || cid != null}
               className={styles.save}
             >
               Save

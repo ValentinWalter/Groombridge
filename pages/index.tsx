@@ -1,22 +1,47 @@
 import type { NextPage } from "next"
 import styles from "styles/Home.module.scss"
 import Editor from "components/Editor"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SaveDialog from "components/SaveDialog"
 import Layout from "components/Layout"
 import { Document } from "model/useDocument"
 
+/** Backs up the document to local storage. */
+const backup = (document: Document) => {
+  const roundedDate = new Date()
+  roundedDate.setMilliseconds(0)
+  roundedDate.setSeconds(0)
+
+  localStorage.setItem(
+    document.title ? document.title : roundedDate.toString(),
+    document.content
+  )
+}
+
 const Home: NextPage<Partial<Document>> = (document) => {
-  const [content, setContent] = useState(document?.content ?? "")
   const [title, setTitle] = useState(document?.title ?? "")
+  const [content, setContent] = useState(document?.content ?? "")
   const [showSaveDialog, setShowSaveDialog] = useState(false)
+
+  // Backup
+  useEffect(() => {
+    const document = { title, content }
+
+    const autosave = setTimeout(() => {
+      backup(document)
+    }, 3000)
+
+    return () => {
+      clearTimeout(autosave)
+    }
+  }, [title, content])
 
   return (
     <Layout
       title={title}
       onTitleChange={setTitle}
       onSave={() => {
-        setShowSaveDialog(!showSaveDialog)
+        setShowSaveDialog(true)
       }}
     >
       <main className={styles.main}>
@@ -28,8 +53,7 @@ const Home: NextPage<Partial<Document>> = (document) => {
       </main>
 
       <SaveDialog
-        title={title}
-        content={content}
+        document={{ title, content }}
         open={showSaveDialog}
         onOpenChange={setShowSaveDialog}
       />
