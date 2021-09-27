@@ -51,7 +51,12 @@ export default function Titlebar({ title, onTitleChange, onSave }: TitlebarProps
         </Link>
 
         <Link href={`/`} passHref>
-          <button className={styles.share}>New</button>
+          <button
+            onClick={() => sessionStorage.removeItem("session_document")}
+            className={styles.share}
+          >
+            New
+          </button>
         </Link>
       </nav>
     )

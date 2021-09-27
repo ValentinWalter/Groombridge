@@ -71,7 +71,8 @@ export default function SaveDialog(props: Props) {
               </li>
               <li>
                 Documents are stored in HTML and pinned to 3 geographically distributed
-                IPFS nodes. Additionally, two Filecoin deals of 18 months are brokered.{" "}
+                IPFS nodes. Additionally, multiple Filecoin deals of 18 months are
+                brokered.{" "}
                 <a href="https://web3.storage/about/#terms-of-service">
                   Refer to the Web3.Storage TOS.
                 </a>
@@ -103,7 +104,7 @@ export default function SaveDialog(props: Props) {
       <Dialog.Content className={styles.dialog}>
         <Dialog.Title>{`"${props.document.title}"`}</Dialog.Title>
         <p className={styles.autosaveinfo}>
-          Documents are auto-saved every 3 seconds to your browser&apos;s local storage.
+          Documents are auto-saved every second to your browser&apos;s local storage.
         </p>
 
         <Body />

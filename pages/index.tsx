@@ -6,8 +6,16 @@ import SaveDialog from "components/SaveDialog"
 import Layout from "components/Layout"
 import { Document } from "model/useDocument"
 
+const defaultDocument: Document = { title: "", content: "" }
+
+const isEmpty = (document: Document): boolean => {
+  return document.title == "" && (document.content == "" || document.content == "<p></p>")
+}
+
 /** Backs up the document to local storage. */
 const backup = (document: Document) => {
+  if (isEmpty(document)) return
+
   const roundedDate = new Date()
   roundedDate.setMilliseconds(0)
   roundedDate.setSeconds(0)
@@ -18,18 +26,35 @@ const backup = (document: Document) => {
   )
 }
 
+/** Backs up the current document to session storage, and removes if empty. */
+const backupSession = (document: Document) => {
+  if (isEmpty(document)) {
+    sessionStorage.removeItem("session_document")
+  } else {
+    sessionStorage.setItem("session_document", JSON.stringify(document))
+  }
+}
+
 const Home: NextPage<Partial<Document>> = (document) => {
-  const [title, setTitle] = useState(document?.title ?? "")
-  const [content, setContent] = useState(document?.content ?? "")
+  // Check if session storage contains anything
+  const sessionDocument: Document = JSON.parse(
+    sessionStorage.getItem("session_document") ?? JSON.stringify(defaultDocument)
+  )
+
+  // Use either props or session document as state
+  const [title, setTitle] = useState(document?.title ?? sessionDocument.title)
+  const [content, setContent] = useState(document?.content ?? sessionDocument.content)
   const [showSaveDialog, setShowSaveDialog] = useState(false)
 
-  // Backup
+  // Backup every second + instant session storage
   useEffect(() => {
     const document = { title, content }
 
+    backupSession(document)
+
     const autosave = setTimeout(() => {
       backup(document)
-    }, 3000)
+    }, 1000)
 
     return () => {
       clearTimeout(autosave)
@@ -47,7 +72,7 @@ const Home: NextPage<Partial<Document>> = (document) => {
       <main className={styles.main}>
         <Editor
           editable={true}
-          content={document?.content}
+          content={content}
           onUpdate={({ editor }) => setContent(editor.getHTML())}
         />
       </main>
