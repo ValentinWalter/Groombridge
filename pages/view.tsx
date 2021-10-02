@@ -26,7 +26,7 @@ const Document: NextPage = () => {
   return (
     <Layout>
       <main className={styles.main}>
-        <Editor editable={false} initialContent={document?.content} />
+        <Editor editable={false} content={document?.content} />
       </main>
     </Layout>
   )

@@ -71,8 +71,9 @@ const Home: NextPage<Partial<Document>> = (document) => {
     >
       <main className={styles.main}>
         <Editor
-          initialContent={document?.content ?? sessionDocument.content}
-          onUpdate={(editor) => setContent(editor.getHTML())}
+          editable={true}
+          content={content}
+          onUpdate={({ editor }) => setContent(editor.getHTML())}
         />
       </main>
 
