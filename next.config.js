@@ -1,4 +1,5 @@
-const isProduction = process.env.NODE_ENV === "production"
+const isValwal = process.env.TARGET === "valwal"
+console.log(`isValwal: ${isValwal}`)
 
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
@@ -7,6 +8,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 /** @type {import('next').NextConfig} */
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
-  basePath: isProduction ? "/groombridge" : undefined,
-  assetPrefix: isProduction ? "/groombridge/" : undefined,
+  basePath: isValwal ? "/groombridge" : undefined,
+  assetPrefix: isValwal ? "/groombridge/" : undefined,
 })

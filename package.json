@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
+    "vwbuild": "TARGET=valwal next build && next export",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build"
